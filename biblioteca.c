@@ -2,6 +2,7 @@
 #include <string.h>
 #include "biblioteca.h"
 
+///////////// funções principais /////////////
 void printMenu(){ // usada para printar o menu toda vez que acontece alguma ação no programa
     printf("\nGerenciador de Tarefas\n");
     printf("Escolha a funcao:\n 1 Adicionar nova tarefa\n 2 Deletar tarefa\n 3 Listar tarefas\n 4 Sair\n");
@@ -12,13 +13,16 @@ int criarTarefa(ListaDeTarefas *lt) {
 
     if (lt->qtd < 100) { // se a lista tiver menos que 100 tarefas, é possivel configurar uma
         printf("Digite a descricao: ");
-        scanf(" %[^\n]", &lt->tarefas[lt->qtd].descricao);
+        scanf(" %[^\n]", lt->tarefas[lt->qtd].descricao);
 
-        printf("Digite a prioridade (0 a 10):");
+        printf("Digite a prioridade (0 a 10): ");
         scanf(" %d", &lt->tarefas[lt->qtd].prioridade);
 
-        printf("Digite a categoria:");
-        scanf(" %[^\n]", &lt->tarefas[lt->qtd].categoria);
+        printf("Digite a categoria: ");
+        scanf(" %[^\n]", lt->tarefas[lt->qtd].categoria);
+
+        printf("Digite o status da tarefa (completo / em andamento / não iniciado): ");
+        scanf(" %[^\n]", lt->tarefas[lt->qtd].status);
 
         printf("Tarefa adicionada com sucesso!\n");
     }
@@ -49,11 +53,20 @@ int ListarTarefa(ListaDeTarefas lt){
             printf("Descricao: %s\n", lt.tarefas[i].descricao);
             printf("Categoria: %s\n", lt.tarefas[i].categoria);
             printf("Prioridade: %d\n", lt.tarefas[i].prioridade);
+            printf("Status: %s\n", lt.tarefas[i].status);
             printf("\n");
         }
     return 0;
 }
 
+int EditarTarefa(ListaDeTarefas *lt){
+
+}
+
+
+
+
+///////////// funções relacionadas ao arquivo /////////////
 int salvarLista(ListaDeTarefas *lt, char nome[]){ // "escreve" em uma arquivo a lista de tarefas em binário para salvá-la
     FILE *f = fopen(nome, "wb");
     if(f == NULL){
