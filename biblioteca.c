@@ -5,7 +5,7 @@
 ///////////// funções principais /////////////
 void printMenu(){ // usada para printar o menu toda vez que acontece alguma ação no programa
     printf("\nGerenciador de Tarefas\n");
-    printf("Escolha a funcao:\n 1 Adicionar nova tarefa\n 2 Deletar tarefa\n 3 Listar tarefas\n 4 Sair\n");
+    printf("Escolha a funcao:\n 1. Adicionar nova tarefa\n 2. Deletar tarefa\n 3. Listar tarefas\n 4. Editar tarefa\n 5. Filtrar tarefas por prioridade\n 6. Filtrar tarefas por estado\n 7. Filtrar tarefas por categoria\n 8. Filtrar tarefas por prioridade e categoria\n 9. Exportar tarefas por prioridade\n 10. Exportar tarefas por categoria\n 11. Exportar tarefas por prioridade e categoria\n 0. Sair\n");
 }
 
 
@@ -21,7 +21,7 @@ int criarTarefa(ListaDeTarefas *lt) {
         printf("Digite a categoria: ");
         scanf(" %[^\n]", lt->tarefas[lt->qtd].categoria);
 
-        printf("Digite o status da tarefa (completo / em andamento / não iniciado): ");
+        printf("Digite o status da tarefa (completo / em andamento / nao iniciado): ");
         scanf(" %[^\n]", lt->tarefas[lt->qtd].status);
 
         printf("Tarefa adicionada com sucesso!\n");
@@ -35,7 +35,7 @@ int criarTarefa(ListaDeTarefas *lt) {
 
 int DeletarTarefa(ListaDeTarefas *lt){
     int tarefaEscolhida;
-    printf("Qual tarefa voce deseja deletar? (0 a 99)"); // informa a tarefa a ser deletada
+    printf("Qual tarefa voce deseja deletar? (0 a 99) "); // informa a tarefa a ser deletada
     scanf("%d", &tarefaEscolhida);
 
     for (int i = tarefaEscolhida; i < 100; i++){
@@ -63,6 +63,8 @@ int EditarTarefa(ListaDeTarefas *lt){
 
 }
 
+
+///////////// funções base /////////////
 
 
 

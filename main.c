@@ -31,6 +31,37 @@ int main() {
         else if(opcao == 3){
             ListarTarefa(lt);
         }
+        else if(opcao == 4){
+            // EditarTarefa(&lt);
+        }
+        else if(opcao == 5){
+            // Filtrar_Prioridade(lt);
+        }
+        else if(opcao == 6){
+            // Filtrar_Estado(lt);
+        }
+        else if(opcao == 7){
+            // Filtrar_Categoria(lt);
+        }
+        else if(opcao == 8){
+            // Filtrar_Prioridade_Categoria(lt);
+        }
+        else if(opcao == 9){
+            // Exportar_Prioridade(&lt);
+        }
+        else if(opcao == 10){
+            // Exportar_Categoria(&lt);
+        }
+        else if(opcao == 11){
+            // Exportar_Prioridade_Categoria(&lt);
+        }
+        else if(opcao == 0){
+            break;
+        }
+        else{
+            printf("Digite uma opcao valida!");
+        }
+
 
     }while(opcao != 4); // permite que o usuário saia do programa
 
