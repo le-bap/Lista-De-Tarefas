@@ -12,16 +12,16 @@ void printMenu(){ // usada para printar o menu toda vez que acontece alguma aç�
 int criarTarefa(ListaDeTarefas *lt) {
 
     if (lt->qtd < 100) { // se a lista tiver menos que 100 tarefas, é possivel configurar uma
-        printf("\nDigite a descricao: ");
+        printf("\nDigite a categoria: ");
+        scanf(" %[^\n]", lt->tarefas[lt->qtd].categoria);
+        clearBuffer();
+        
+        printf("Digite a descricao: ");
         scanf(" %[^\n]", lt->tarefas[lt->qtd].descricao);
         clearBuffer();
 
         printf("Digite a prioridade (0 a 10): ");
         scanf(" %d", &lt->tarefas[lt->qtd].prioridade);
-        clearBuffer();
-
-        printf("Digite a categoria: ");
-        scanf(" %[^\n]", lt->tarefas[lt->qtd].categoria);
         clearBuffer();
 
         printf("Digite o status da tarefa (completo / em andamento / nao iniciado): ");
@@ -109,7 +109,7 @@ int EditarTarefa(ListaDeTarefas *lt){
 int Filtrar_Prioridade(ListaDeTarefas lt){
     
     int prioridadeEscolhida;
-    printf("\nDigite o taxa de prioridade: ");
+    printf("\nDigite o taxa de prioridade (0 a 10): ");
     scanf("%d", &prioridadeEscolhida);
     clearBuffer();
 
@@ -120,14 +120,53 @@ int Filtrar_Prioridade(ListaDeTarefas lt){
     else{
         for(int i = 0; i < lt.qtd; i++){
             if (lt.tarefas[i].prioridade == prioridadeEscolhida){
+                printf("\n");
                 printf("Categoria: %s\n", lt.tarefas[i].categoria);
                 printf("Descricao: %s\n", lt.tarefas[i].descricao);
-                printf("Prioridade: %d\n", lt.tarefas[i].prioridade);
                 printf("Status: %s\n", lt.tarefas[i].status);
                 printf("\n");
             }
         }
     }
+}
+
+int Filtrar_Estado(ListaDeTarefas lt){
+    
+    int estadoEscolhido;
+    printf("\nDigite o estado:\n1. nao iniciado\n2. em andamento\n3. completo\n>>> ");
+    scanf("%d", &estadoEscolhido);
+    clearBuffer();
+
+    if (estadoEscolhido > 3 || estadoEscolhido < 1){
+        printf("Digite um numero valido.");
+        return 1;
+    }
+    else{
+        for(int i = 0; i < lt.qtd; i++){
+            if (estadoEscolhido == 1 && strcmp(lt.tarefas[i].status, "nao iniciado") == 0){
+                printf("\n");
+                printf("Categoria: %s\n", lt.tarefas[i].categoria);
+                printf("Descricao: %s\n", lt.tarefas[i].descricao);
+                printf("Prioridade: %d\n", lt.tarefas[i].prioridade);
+                printf("\n");
+            }
+            else if (estadoEscolhido == 2 && strcmp(lt.tarefas[i].status, "em andamento") == 0){
+                printf("\n");
+                printf("Categoria: %s\n", lt.tarefas[i].categoria);
+                printf("Descricao: %s\n", lt.tarefas[i].descricao);
+                printf("Prioridade: %d\n", lt.tarefas[i].prioridade);
+                printf("\n");
+            }
+            else if (estadoEscolhido == 3 && strcmp(lt.tarefas[i].status, "completo") == 0){
+                printf("\n");
+                printf("Categoria: %s\n", lt.tarefas[i].categoria);
+                printf("Descricao: %s\n", lt.tarefas[i].descricao);
+                printf("Prioridade: %d\n", lt.tarefas[i].prioridade);
+                printf("\n");
+            }
+        }  
+    } 
+    return 0;  
 }
 
 
