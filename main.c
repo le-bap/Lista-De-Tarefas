@@ -32,7 +32,7 @@ int main() {
             ListarTarefa(lt);
         }
         else if(opcao == 4){
-            // EditarTarefa(&lt);
+            EditarTarefa(&lt);
         }
         else if(opcao == 5){
             // Filtrar_Prioridade(lt);

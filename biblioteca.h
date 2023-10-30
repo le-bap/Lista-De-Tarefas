@@ -3,7 +3,7 @@
 
 typedef struct  { // struct que mostra onde vai ser salvo cada tipo de conteudo
     char descricao[300];
-    char categoria[100];
+    char categoria[50];
     char status[15];
     int prioridade;
 }Tarefa;
@@ -28,6 +28,7 @@ int Exportar_Categoria(ListaDeTarefas *lt);
 int Exportar_Prioridade_Categoria(ListaDeTarefas *lt);
 
 // funções base
+void clearBuffer();
 
 // funções de arquivo
 int salvarLista(ListaDeTarefas *lt, char nome[]);
