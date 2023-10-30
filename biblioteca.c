@@ -12,7 +12,7 @@ void printMenu(){ // usada para printar o menu toda vez que acontece alguma aç�
 int criarTarefa(ListaDeTarefas *lt) {
 
     if (lt->qtd < 100) { // se a lista tiver menos que 100 tarefas, é possivel configurar uma
-        printf("Digite a descricao: ");
+        printf("\nDigite a descricao: ");
         scanf(" %[^\n]", lt->tarefas[lt->qtd].descricao);
         clearBuffer();
 
@@ -39,7 +39,7 @@ int criarTarefa(ListaDeTarefas *lt) {
 
 int DeletarTarefa(ListaDeTarefas *lt){
     int tarefaEscolhida;
-    printf("Qual tarefa voce deseja deletar? (0 a 99) "); // informa a tarefa a ser deletada
+    printf("\nQual tarefa voce deseja deletar? (0 a 99) "); // informa a tarefa a ser deletada
     scanf("%d", &tarefaEscolhida);
     clearBuffer();
 
@@ -72,8 +72,10 @@ int EditarTarefa(ListaDeTarefas *lt){
     clearBuffer();
 
     if (tarefaEscolhida > lt->qtd){
-        printf("\nDigite um numero valido.");
+        printf("Digite um numero valido.");
+        return 1;
     }
+
     else{
         int campoAlteracao;
         printf("\nDigite o campo que deseja alterar:\n1. Categoria\n2. Descricao\n3. Prioridade\n4. Status\n>>> ");
@@ -99,6 +101,31 @@ int EditarTarefa(ListaDeTarefas *lt){
             printf("Digite o novo status: ");
             scanf("%[^\n]",  lt->tarefas[tarefaEscolhida].status);
             clearBuffer();
+        }
+    }
+    return 0;
+}
+
+int Filtrar_Prioridade(ListaDeTarefas lt){
+    
+    int prioridadeEscolhida;
+    printf("\nDigite o taxa de prioridade: ");
+    scanf("%d", &prioridadeEscolhida);
+    clearBuffer();
+
+    if (prioridadeEscolhida > 10 || prioridadeEscolhida < 0){
+        printf("Digite um numero valido.");
+        return 1;
+    }
+    else{
+        for(int i = 0; i < lt.qtd; i++){
+            if (lt.tarefas[i].prioridade == prioridadeEscolhida){
+                printf("Categoria: %s\n", lt.tarefas[i].categoria);
+                printf("Descricao: %s\n", lt.tarefas[i].descricao);
+                printf("Prioridade: %d\n", lt.tarefas[i].prioridade);
+                printf("Status: %s\n", lt.tarefas[i].status);
+                printf("\n");
+            }
         }
     }
 }
