@@ -35,7 +35,7 @@ int main() {
             EditarTarefa(&lt);
         }
         else if(opcao == 5){
-            // Filtrar_Prioridade(lt);
+            Filtrar_Prioridade(lt);
         }
         else if(opcao == 6){
             // Filtrar_Estado(lt);
@@ -63,7 +63,7 @@ int main() {
         }
 
 
-    }while(opcao != 4); // permite que o usuário saia do programa
+    }while(opcao != 0); // permite que o usuário saia do programa
 
     //Logica que salva todas as funções feitas dentro do arquivo
     cod = salvarLista(&lt, "salvo.txt");
