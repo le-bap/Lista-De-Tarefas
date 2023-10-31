@@ -264,14 +264,12 @@ int Exportar_Prioridade(ListaDeTarefas *lt){
         FILE *arq = fopen("Tarefas_Prioridade.txt", "w");
 
         for(int i = 0; i < lt->qtd; i++){// le as informações que estão em "lt" 
-
             if (lt->tarefas[i].prioridade == prioridadeEscolhida){
                 fprintf(arq,"Prioridade: %d; " ,lt->tarefas[i].prioridade);
                 fprintf(arq,"Categoria: %s; " ,lt->tarefas[i].categoria);
                 fprintf(arq,"Status: %s; " ,lt->tarefas[i].status);
                 fprintf(arq,"Descricao: %s\n" ,lt->tarefas[i].descricao);  
-            }
-            
+            }   
         }
    
         fclose(arq);
@@ -279,6 +277,57 @@ int Exportar_Prioridade(ListaDeTarefas *lt){
     }
     
 }
+
+int Exportar_Prioridade_Categoria(ListaDeTarefas *lt){
+    
+    char categoriaEscolhida[100];
+    printf("\nDigite a categoria: ");
+    scanf("%[^\n]", categoriaEscolhida);
+    clearBuffer();
+
+    int verificar = 0; // usado para ver se a categoria digitada existe
+    Tarefa tr[100];
+    int total = 0;
+
+    for (int i = 0; i < lt->qtd; i++){ // percorre toda a lista de tarefas
+        if (strcmp(lt->tarefas[i].categoria, categoriaEscolhida) == 0){ 
+            verificar = 1;
+            tr[total] = lt->tarefas[i]; // cria um lista com as tarefas da categoria escolhida
+            total++;
+        }
+    }
+    if(verificar != 1){
+        printf("Digite uma categoria válida.\n");
+        return 1;
+    }
+
+    int prioridadeEscolhida;
+    printf("Digite o taxa de prioridade (0 a 10): ");
+    scanf("%d", &prioridadeEscolhida);
+    clearBuffer();
+
+    if (prioridadeEscolhida > 10 || prioridadeEscolhida < 0){
+        printf("Digite um numero valido.");
+        return 1;
+    }
+
+    else{
+        FILE *arq = fopen("Tarefas_Prioridade_Categoria.txt", "w");
+
+        for(int i = 0; i < total; i++){
+            if (tr[i].prioridade == prioridadeEscolhida){
+                fprintf(arq,"Prioridade: %d; " ,tr[i].prioridade);
+                fprintf(arq,"Categoria: %s; " ,tr[i].categoria);
+                fprintf(arq,"Status: %s; " ,tr[i].status);
+                fprintf(arq,"Descricao: %s\n" ,tr[i].descricao);  
+            }
+        }
+        fclose(arq);
+    }
+
+    return 0;
+}
+
 
 
 ///////////// funções base /////////////
