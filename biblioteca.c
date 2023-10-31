@@ -169,6 +169,64 @@ int Filtrar_Estado(ListaDeTarefas lt){
     return 0;  
 }
 
+int Filtrar_Categoria(ListaDeTarefas lt){
+    
+    char categoriaEscolhida[100];
+    printf("\nDigite a categoria: ");
+    scanf("%[^\n]", categoriaEscolhida);
+    clearBuffer();
+    int verificar; // usado para ver se a categoria digitada existe
+    char tarefasCategoriaEscolhida[100];
+
+    for (int i = 0; i < lt.qtd; i++){ // percorre toda a lista de tarefas
+        if (strcmp(lt.tarefas[i].categoria, categoriaEscolhida) == 0){ 
+            verificar = 1;
+            // tarefasCategoriaEscolhida[i] = &lt.tarefas[i].descricao;
+        }
+        else{
+            printf("Digite uma categoria válida.");
+            return 1;
+        }
+
+        printf("%s",tarefasCategoriaEscolhida);
+    }
+   
+    return 0;  
+}
+
+
+int Exportar_Prioridade(ListaDeTarefas *lt){
+    
+    int prioridadeEscolhida;
+    printf("\nDigite o taxa de prioridade (0 a 10): ");
+    scanf("%d", &prioridadeEscolhida);
+    clearBuffer();
+
+    if (prioridadeEscolhida > 10 || prioridadeEscolhida < 0){
+        printf("Digite um numero valido.");
+        return 1;
+    }
+    else{
+        
+        FILE *arq = fopen("Tarefas_Prioridade.txt", "w");
+
+        for(int i = 0; i < lt->qtd; i++){// le as informações que estão em "lt" 
+
+            if (lt->tarefas[i].prioridade == prioridadeEscolhida){
+                fprintf(arq,"Prioridade: %d; " ,lt->tarefas[i].prioridade);
+                fprintf(arq,"Categoria: %s; " ,lt->tarefas[i].categoria);
+                fprintf(arq,"Status: %s; " ,lt->tarefas[i].status);
+                fprintf(arq,"Descricao: %s\n" ,lt->tarefas[i].descricao);  
+            }
+            
+        }
+   
+        fclose(arq);
+        return 0;
+    }
+    
+}
+
 
 ///////////// funções base /////////////
 void clearBuffer(){ //evita erros com a função scanf

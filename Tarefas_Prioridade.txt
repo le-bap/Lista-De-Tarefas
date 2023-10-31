@@ -1,0 +1,2 @@
+Prioridade: 10; Categoria: escola; Status: nao iniciado; Descricao: ex de mat
+Prioridade: 10; Categoria: escola; Status: nao iniciado; Descricao: terminar trabalho
