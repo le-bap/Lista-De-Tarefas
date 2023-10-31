@@ -45,7 +45,7 @@ int main() {
             Filtrar_Categoria(lt);
         }
         else if(opcao == 8){
-            // Filtrar_Prioridade_Categoria(lt);
+            Filtrar_Prioridade_Categoria(lt);
         }
         else if(opcao == 9){
             Exportar_Prioridade(&lt);

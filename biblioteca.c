@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 #include "biblioteca.h"
 
 ///////////// funções principais /////////////
@@ -175,23 +176,75 @@ int Filtrar_Categoria(ListaDeTarefas lt){
     printf("\nDigite a categoria: ");
     scanf("%[^\n]", categoriaEscolhida);
     clearBuffer();
-    int verificar; // usado para ver se a categoria digitada existe
-    char tarefasCategoriaEscolhida[100];
+
+    int verificar = 0; // usado para ver se a categoria digitada existe
+    Tarefa tr[100];
+    int total = 0;
 
     for (int i = 0; i < lt.qtd; i++){ // percorre toda a lista de tarefas
         if (strcmp(lt.tarefas[i].categoria, categoriaEscolhida) == 0){ 
             verificar = 1;
-            // tarefasCategoriaEscolhida[i] = &lt.tarefas[i].descricao;
+            tr[total] = lt.tarefas[i];
+            total++;
         }
-        else{
-            printf("Digite uma categoria válida.");
-            return 1;
-        }
-
-        printf("%s",tarefasCategoriaEscolhida);
     }
-   
+    if(verificar != 1){
+        printf("Digite uma categoria válida.\n");
+        return 1;
+    }
+
+    //for (int i = 0; i < total; i++){
+    //    printf("%s\n", tr[i].descricao);
+    //    printf("%d\n", tr[i].prioridade);
+    //}
+    
     return 0;  
+}
+
+int Filtrar_Prioridade_Categoria(ListaDeTarefas lt){
+
+    char categoriaEscolhida[100];
+    printf("\nDigite a categoria: ");
+    scanf("%[^\n]", categoriaEscolhida);
+    clearBuffer();
+
+    int verificar = 0; // usado para ver se a categoria digitada existe
+    Tarefa tr[100];
+    int total = 0;
+
+    for (int i = 0; i < lt.qtd; i++){ // percorre toda a lista de tarefas
+        if (strcmp(lt.tarefas[i].categoria, categoriaEscolhida) == 0){ 
+            verificar = 1;
+            tr[total] = lt.tarefas[i]; // cria um lista com as tarefas da categoria escolhida
+            total++;
+        }
+    }
+    if(verificar != 1){
+        printf("Digite uma categoria válida.\n");
+        return 1;
+    }
+
+    int prioridadeEscolhida;
+    printf("Digite o taxa de prioridade (0 a 10): ");
+    scanf("%d", &prioridadeEscolhida);
+    clearBuffer();
+
+    if (prioridadeEscolhida > 10 || prioridadeEscolhida < 0){
+        printf("Digite um numero valido.");
+        return 1;
+    }
+
+    else{
+        for(int i = 0; i < total + 1; i++){
+            if (tr[i].prioridade == prioridadeEscolhida){
+                printf("\n");
+                printf("Descricao: %s\n", tr[i].descricao);
+                printf("Status: %s\n", tr[i].status);
+                printf("\n");
+            }
+        }
+    }
+    return 0;
 }
 
 
