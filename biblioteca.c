@@ -169,11 +169,67 @@ int Filtrar_Estado(ListaDeTarefas lt){
     return 0;  
 }
 
+int Filtrar_Categoria(ListaDeTarefas lt){
+    
+    char categoriaEscolhida[100];
+    printf("\nDigite a categoria: ");
+    scanf("%[^\n]", categoriaEscolhida);
+    clearBuffer();
+    int verificar; // usado para ver se a categoria digitada existe
+    char tarefasCategoriaEscolhida[100];
+
+    for (int i = 0; i < lt.qtd; i++){ // percorre toda a lista de tarefas
+        if (strcmp(lt.tarefas[i].categoria, categoriaEscolhida) == 0){ 
+            verificar = 1;
+            // tarefasCategoriaEscolhida[i] = &lt.tarefas[i].descricao;
+        }
+        else{
+            printf("Digite uma categoria válida.");
+            return 1;
+        }
+
+        printf("%s",tarefasCategoriaEscolhida);
+    }
+   
+    return 0;  
+}
+
+
+int Exportar_Prioridade(&lt){
+
+}
+
 
 ///////////// funções base /////////////
 void clearBuffer(){ //evita erros com a função scanf
     int c;
     while((c = getchar()) != '\n' && c != EOF);
+}
+
+int EscreverNoExtrato(Cliente cl){ // Escreve no extrato as informações de todas as operações
+    FILE *arq = fopen("Extrato.txt", "w");
+
+    for(int i = 0; i < cl.qnt_op; i++){// le as informações que estão em "op" e escreve no arquivo do cliente especifico
+        fprintf(arq,"%s\n" ,cl.op[i].descricao);
+        fprintf(arq, "Valor: %.2lf\n",cl.op[i].valor);
+        fprintf(arq, "Taxa: %.2lf\n\n",cl.op[i].taxa);
+    }
+   
+    fclose(arq);
+    return 0;
+}
+
+int AtualizaExtrato(double valor, double taxa, char desc[], Cliente *cl){ // atualiza as informações de cada operação 
+  
+    if (cl->qnt_op> 99)// Verifica se há menos do que 100 operações
+        for (int i = 0; i < cl->qnt_op - 1; i++){ // se chegar a 100, apaga 1 operação
+            cl->op[i] = cl->op[i + 1];
+        }
+
+    cl->op[cl->qnt_op].valor = valor;/////// atualiza valorezes, taxa e descrição de cada operação
+    cl->op[cl->qnt_op].taxa = taxa;
+    strcpy(cl->op[cl->qnt_op].descricao, desc);
+    cl->qnt_op ++;
 }
 
 

@@ -21,6 +21,7 @@ int main() {
         printMenu();
         printf(">>> ");
         scanf("%d", &opcao);
+        clearBuffer();
 
         if(opcao == 1){
             criarTarefa(&lt);
@@ -41,13 +42,13 @@ int main() {
             Filtrar_Estado(lt);
         }
         else if(opcao == 7){
-            // Filtrar_Categoria(lt);
+            Filtrar_Categoria(lt);
         }
         else if(opcao == 8){
             // Filtrar_Prioridade_Categoria(lt);
         }
         else if(opcao == 9){
-            // Exportar_Prioridade(&lt);
+            Exportar_Prioridade(&lt);
         }
         else if(opcao == 10){
             // Exportar_Categoria(&lt);
