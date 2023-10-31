@@ -195,8 +195,36 @@ int Filtrar_Categoria(ListaDeTarefas lt){
 }
 
 
-int Exportar_Prioridade(&lt){
+int Exportar_Prioridade(ListaDeTarefas *lt){
+    
+    int prioridadeEscolhida;
+    printf("\nDigite o taxa de prioridade (0 a 10): ");
+    scanf("%d", &prioridadeEscolhida);
+    clearBuffer();
 
+    if (prioridadeEscolhida > 10 || prioridadeEscolhida < 0){
+        printf("Digite um numero valido.");
+        return 1;
+    }
+    else{
+        
+        FILE *arq = fopen("Tarefas_Prioridade.txt", "w");
+
+        for(int i = 0; i < lt->qtd; i++){// le as informações que estão em "lt" 
+
+            if (lt->tarefas[i].prioridade == prioridadeEscolhida){
+                fprintf(arq,"Prioridade: %d; " ,lt->tarefas[i].prioridade);
+                fprintf(arq,"Categoria: %s; " ,lt->tarefas[i].categoria);
+                fprintf(arq,"Status: %s; " ,lt->tarefas[i].status);
+                fprintf(arq,"Descricao: %s\n" ,lt->tarefas[i].descricao);  
+            }
+            
+        }
+   
+        fclose(arq);
+        return 0;
+    }
+    
 }
 
 
@@ -204,32 +232,6 @@ int Exportar_Prioridade(&lt){
 void clearBuffer(){ //evita erros com a função scanf
     int c;
     while((c = getchar()) != '\n' && c != EOF);
-}
-
-int EscreverNoExtrato(Cliente cl){ // Escreve no extrato as informações de todas as operações
-    FILE *arq = fopen("Extrato.txt", "w");
-
-    for(int i = 0; i < cl.qnt_op; i++){// le as informações que estão em "op" e escreve no arquivo do cliente especifico
-        fprintf(arq,"%s\n" ,cl.op[i].descricao);
-        fprintf(arq, "Valor: %.2lf\n",cl.op[i].valor);
-        fprintf(arq, "Taxa: %.2lf\n\n",cl.op[i].taxa);
-    }
-   
-    fclose(arq);
-    return 0;
-}
-
-int AtualizaExtrato(double valor, double taxa, char desc[], Cliente *cl){ // atualiza as informações de cada operação 
-  
-    if (cl->qnt_op> 99)// Verifica se há menos do que 100 operações
-        for (int i = 0; i < cl->qnt_op - 1; i++){ // se chegar a 100, apaga 1 operação
-            cl->op[i] = cl->op[i + 1];
-        }
-
-    cl->op[cl->qnt_op].valor = valor;/////// atualiza valorezes, taxa e descrição de cada operação
-    cl->op[cl->qnt_op].taxa = taxa;
-    strcpy(cl->op[cl->qnt_op].descricao, desc);
-    cl->qnt_op ++;
 }
 
 
