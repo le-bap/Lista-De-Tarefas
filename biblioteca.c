@@ -285,6 +285,42 @@ int Exportar_Prioridade(ListaDeTarefas *lt){ // exporta as tarefas de uma determ
     
 }
 
+int Exportar_Categoria(ListaDeTarefas *lt){
+
+char categoriaEscolhida[100];
+    printf("\nDigite a categoria: "); // pede a categoria desejada
+    scanf("%[^\n]", categoriaEscolhida);
+    clearBuffer();
+
+    int verificar = 0; // usado para ver se a categoria digitada existe
+    Tarefa tr[100];
+    int total = 0;
+
+    for (int i = 0; i < lt->qtd; i++){ // percorre toda a lista de tarefas
+        if (strcmp(lt->tarefas[i].categoria, categoriaEscolhida) == 0){ 
+            verificar = 1; // categoria válida
+            tr[total] = lt->tarefas[i]; // adiciona a tarefa a uma nova lista (tr) com tamanho "total"
+            total++;
+        }
+    }
+    if(verificar != 1){ // caso a categoria não exista
+        printf("Digite uma categoria válida.\n");
+        return 1;
+    }
+
+    FILE *arq = fopen("Tarefas_Categoria.txt", "w"); // ao inves de printar no terminal, escreve no arquivo Tarefas_Categoria.txt
+
+        for(int i = 0; i < total; i++){// le as informações que estão em "tr" e escreve no arquivo txt
+            fprintf(arq,"Prioridade: %d; " ,tr[i].prioridade);
+            fprintf(arq,"Categoria: %s; " ,tr[i].categoria);
+            fprintf(arq,"Status: %s; " ,tr[i].status);
+            fprintf(arq,"Descricao: %s\n" ,tr[i].descricao);  
+        }   
+   
+        fclose(arq);
+        return 0;    
+}
+
 int Exportar_Prioridade_Categoria(ListaDeTarefas *lt){ // exporta as tarefas de uma determinada categoria e prioridade para um documento txt
     
     char categoriaEscolhida[100];
