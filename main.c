@@ -1,23 +1,22 @@
 #include <stdio.h>
 #include "biblioteca.h"
 
-//Julian, Eric Antunes, Letizia
+//Letizia Lowatzki Baptistella 24.123.031-7
 
 int main() {
 
-
-    ListaDeTarefas lt; //criamos a lista de tarefas lt que servirá para
+    ListaDeTarefas lt; // cria a lista de tarefas para usar durante o programa
     int cod;
     char arquivo[] = "salvo.txt";
 
 
-    cod = carregarLista(&lt, arquivo);// carrega o arquivo ao abrir o codigo
+    cod = carregarLista(&lt, arquivo);// carrega o arquivo de salvamento da lista ao iniciar o programa
     if(cod == 1){
         lt.qtd = 0;
     }
 
     int opcao;
-    do{ //Lista com as interações que o usuario pode fazer com o programa
+    do{ // enquanto o usuário nao clicar para sair, pede a ação que o usuário quer realizar e "chama" a função correspondente
         printMenu();
         printf(">>> ");
         scanf("%d", &opcao);
@@ -64,9 +63,9 @@ int main() {
         }
 
 
-    }while(opcao != 0); // permite que o usuário saia do programa
+    }while(opcao != 0);
 
-    //Logica que salva todas as funções feitas dentro do arquivo
+    // salva todas as funções feitas dentro do arquivo ao sair do programa
     cod = salvarLista(&lt, "salvo.txt");
     if(cod != 0){
         printf("Erro ao salvar as tarefas");
