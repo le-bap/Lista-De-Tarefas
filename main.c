@@ -50,7 +50,7 @@ int main() {
             Exportar_Prioridade(&lt);
         }
         else if(opcao == 10){
-            // Exportar_Categoria(&lt);
+            Exportar_Categoria(&lt);
         }
         else if(opcao == 11){
             Exportar_Prioridade_Categoria(&lt);

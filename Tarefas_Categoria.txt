@@ -1,0 +1,1 @@
+Prioridade: 4; Categoria: vida; Status: nao iniciado; Descricao: comprar ovo
