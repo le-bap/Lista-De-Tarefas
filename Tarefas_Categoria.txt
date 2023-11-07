@@ -1,1 +1,3 @@
-Prioridade: 4; Categoria: vida; Status: nao iniciado; Descricao: comprar ovo
+Prioridade: 10; Categoria: escola; Status: nao iniciado; Descricao: ex de mat
+Prioridade: 5; Categoria: escola; Status: completo; Descricao: estudar para prova
+Prioridade: 10; Categoria: escola; Status: nao iniciado; Descricao: terminar trabalho

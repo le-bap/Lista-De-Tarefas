@@ -44,7 +44,7 @@ int DeletarTarefa(ListaDeTarefas *lt){ // função que deleta uma terefa
     scanf("%d", &tarefaEscolhida);
     clearBuffer();
 
-    if(tarefaEscolhida < lt->qtd){ // confere se a tarefa digitada existe
+    if(tarefaEscolhida > lt->qtd){ // confere se a tarefa digitada existe
         printf("Digite um numero valido.");
         return 1;
     }
@@ -195,16 +195,19 @@ int Filtrar_Categoria(ListaDeTarefas lt){
             total++;
         }
     }
+
     if(verificar != 1){
         printf("Digite uma categoria válida.\n");
         return 1;
     }
 
-    //for (int i = 0; i < total; i++){
-    //    printf("%s\n", tr[i].descricao);
-    //    printf("%d\n", tr[i].prioridade);
-    //}
-    
+    for(int i = 0; i < total; i++){
+        printf("\nDescricao: %s" ,tr[i].descricao);
+        printf("\nPrioridade: %d" ,tr[i].prioridade);
+        printf("\nStatus: %s" ,tr[i].status);
+        printf("\n");
+    }
+
     return 0;  
 }
 
@@ -372,7 +375,7 @@ int Exportar_Prioridade_Categoria(ListaDeTarefas *lt){ // exporta as tarefas de 
 }
 
 
-///////////// funções base /////////////
+///////////// função base /////////////
 void clearBuffer(){ //evita erros com a função scanf
     int c;
     while((c = getchar()) != '\n' && c != EOF);
