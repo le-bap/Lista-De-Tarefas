@@ -188,7 +188,7 @@ int Filtrar_Categoria(ListaDeTarefas lt){
     Tarefa tr[100];
     int total = 0;
 
-    for (int i = 0; i < lt.qtd; i++){ // percorre toda a lista de tarefas
+    for (int i = 0; i < lt.qtd; i++){ // percorre toda a lista de tarefas e verirfica as que possuem a categoria indicada
         if (strcmp(lt.tarefas[i].categoria, categoriaEscolhida) == 0){ 
             verificar = 1;
             tr[total] = lt.tarefas[i];
@@ -199,6 +199,16 @@ int Filtrar_Categoria(ListaDeTarefas lt){
     if(verificar != 1){
         printf("Digite uma categoria válida.\n");
         return 1;
+    }
+
+    for (int i = 0; i < total - 1; i++) { // faz a ordenação das tarefas em ordem descrescente
+        for (int j = i + 1; j < total; j++) {
+            if (tr[i].prioridade < tr[j].prioridade) {
+                Tarefa temp = tr[i];
+                tr[i] = tr[j];
+                tr[j] = temp;
+            }
+        }
     }
 
     for(int i = 0; i < total; i++){
@@ -311,6 +321,16 @@ char categoriaEscolhida[100];
         return 1;
     }
 
+    for (int i = 0; i < total - 1; i++) { // faz a ordenação em ordem descrescente de prioridade
+        for (int j = i + 1; j < total; j++) {
+            if (tr[i].prioridade < tr[j].prioridade) {
+                Tarefa temp = tr[i];
+                tr[i] = tr[j];
+                tr[j] = temp;
+            }
+        }
+    }
+
     FILE *arq = fopen("Tarefas_Categoria.txt", "w"); // ao inves de printar no terminal, escreve no arquivo Tarefas_Categoria.txt
 
         for(int i = 0; i < total; i++){// le as informações que estão em "tr" e escreve no arquivo txt
@@ -380,7 +400,6 @@ void clearBuffer(){ //evita erros com a função scanf
     int c;
     while((c = getchar()) != '\n' && c != EOF);
 }
-
 
 ///////////// funções relacionadas ao arquivo /////////////
 int salvarLista(ListaDeTarefas *lt, char nome[]){ // "escreve" em um arquivo a lista de tarefas em binário para salvá-la

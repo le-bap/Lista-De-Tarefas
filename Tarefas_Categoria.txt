@@ -1,3 +1,4 @@
 Prioridade: 10; Categoria: escola; Status: nao iniciado; Descricao: ex de mat
-Prioridade: 5; Categoria: escola; Status: completo; Descricao: estudar para prova
 Prioridade: 10; Categoria: escola; Status: nao iniciado; Descricao: terminar trabalho
+Prioridade: 5; Categoria: escola; Status: completo; Descricao: estudar para prova
+Prioridade: 2; Categoria: escola; Status: completo; Descricao: terminar ativ

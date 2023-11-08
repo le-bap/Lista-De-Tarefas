@@ -27,7 +27,7 @@ int Exportar_Prioridade(ListaDeTarefas *lt);
 int Exportar_Categoria(ListaDeTarefas *lt);
 int Exportar_Prioridade_Categoria(ListaDeTarefas *lt);
 
-// função de ajuda ao desenvolvimento do programa
+// funções que ajudam o desenvolvimento do programa
 void clearBuffer();
 
 // funções que lidam com o arquivo de salvamento
